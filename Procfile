@@ -1,1 +1,1 @@
-gunicorn galleryy.wsgi
+web:gunicorn galleryy.wsgi
