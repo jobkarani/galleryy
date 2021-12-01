@@ -1,2 +1,7 @@
 .card:hover{
     filter: drop-shadow(2px 4px 8px greenyellow);}
+
+*{
+    margin: 0;
+    padding: 0;
+}
