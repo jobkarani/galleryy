@@ -2,15 +2,15 @@
 
 {% block content %}
 {{block.super}}
-<div class="jumbotron" style="text-align:center">
+<div class="jumbotron" style="text-align:center;background-color:#FF9300;border-style: outset;border-color: black;filter: drop-shadow(2px 4px 8px #585858);">
 <h1 style="font-size:xx-large;font-weight:bold;">Welcome To Jk's Gallery</h1>
 <p>Feel free to Use the images.</p>
 </div>
 <div class="row">
-    
     {% for image in img%}
-    <div class="col-4">
-        <h2 style= 'color: blue;'>{{image.name}}</h2>
+    <div class="col-4" style="padding-bottom:20px;">
+    <div class="card" style="border-style: solid;border-color: white;background-color:#49FF00;align-items:center;filter: drop-shadow(2px 4px 8px #585858);">
+        <h2 style= 'color: black;font-size:x-large;font-weight:bold;'>{{image.name}}</h2>
         
         <div class="img-details">
             <span>
@@ -26,6 +26,7 @@
         
         <img src="{{image.image.url}}" alt="xxx" height="300" width="300">
     </div>
+</div>
     {% endfor %}
 
     <div class="row" >
