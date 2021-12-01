@@ -14,32 +14,15 @@ import os
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import django_heroku
-import dj_database_url
-from decouple import config,Csv
-
-MODE=config("MODE", default="dev")
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '&$)vl8b#5atf&$bv6h4jfh^y!g8^-#vdeycav$ayt0wl$=%vcn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -58,22 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap4',
-    'cloudinary',
-    'cloudinary_storage'
+    'cloudinary'
 ]
-
-
-cloudinary.config( 
-  cloud_name = "dwrxuibpi", 
-  api_key = "226928141486514", 
-  api_secret = "bakCtUGpYbgoF9HFd3rmpUd6EHI" 
-)
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'mongina',
-    'API_KEY': '332865662615486',
-    'API_SECRET': 'Mu5vzosaB_bVW-p8GaqQ0RHKtu4'
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MIDDLEWARE = [
     # Simplified static file serving.
@@ -115,9 +84,9 @@ WSGI_APPLICATION = 'galleryy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
-        'USER': '',
-    'PASSWORD':'',
+        'NAME': 'images',
+        'USER': 'moringa',
+    'PASSWORD':'Access',
     }
 }
 
@@ -171,5 +140,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
+
+cloudinary.config( 
+  cloud_name = "dwrxuibpi", 
+  api_key = "226928141486514", 
+  api_secret = "bakCtUGpYbgoF9HFd3rmpUd6EHI" 
+)
