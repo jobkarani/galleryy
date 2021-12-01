@@ -15,11 +15,11 @@
         <div class="img-details">
             <span>
                 <b>Category: </b>
-                <i>{{image.category}}</i>
+                <i style="color:#FF0000;">{{image.category}}</i>
             </span>
             <span>
                 <b>Location: </b>
-                <i>{{image.location}}</i>
+                <i style="color:#FF9300;">{{image.location}}</i>
             </span> 
             
         </div>
@@ -28,30 +28,30 @@
     </div>
 </div>
     {% endfor %}
-
-    <div class="row" >
+</div>
+    <div class="row" style="align-items:center;">
         <div class="col-md-6">
-            <h2>Categories</h2>
+            <h2 style="color:#FF0000;font-size:xx-large;font-weight:bold;">Categories</h2>
                 <a  href="/">
-                    <i>All</i>
+                    <i style="color:#FF9300;">All</i>
                 </a>
                 {% for category in cat%}
-                <a  href="/?category={{category.id}}">
-                    <i>#{{category.name}}</i>
+                <a  href="/?category={{category.id}}" style="color:#FF0000;">
+                    <i>~{{category.name}}</i>
                 </a>
             {% endfor %}
         </div>
         <div class="col-md-6">
-            <h2>Locations</h2>
+            <h2 style="color:#FF9300;font-size:xx-large;font-weight:bold;">Locations</h2>
                 <a  href="/">
-                    <i>All</i>
+                    <i style="color:#FF0000;">All</i>
                 </a>
                 {% for location in loc%}
-                <a  href="/?location={{location.id}}">
-                    <i>#{{location.name}}</i>
+                <a  href="/?location={{location.id}}" style="color:#FF9300;">
+                    <i>~{{location.name}}</i>
                 </a>
             {% endfor %}
         </div>
-    </div>
+    
 
 {% endblock %}
