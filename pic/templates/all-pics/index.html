@@ -1,0 +1,52 @@
+{%extends 'all-pics/base.html'%}
+
+{% block content %}
+{{block.super}}
+<div class="row">
+    
+    {% for image in img%}
+    <div class="col-4">
+        <h2 style= 'color: blue;'>{{image.name}}</h2>
+        
+        <div class="img-details">
+            <span>
+                <b>Category: </b>
+                <i>{{image.category}}</i>
+            </span>
+            <span>
+                <b>Location: </b>
+                <i>{{image.location}}</i>
+            </span> 
+            
+        </div>
+        
+        <img src="{{image.image.url}}" alt="xxx" height="300" width="300">
+    </div>
+    {% endfor %}
+
+    <div class="row" >
+        <div class="col-md-6">
+            <h2>Categories</h2>
+                <a  href="/">
+                    <i>All</i>
+                </a>
+                {% for category in cat%}
+                <a  href="/?category={{category.id}}">
+                    <i>#{{category.name}}</i>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="col-md-6">
+            <h2>Locations</h2>
+                <a  href="/">
+                    <i>All</i>
+                </a>
+                {% for location in loc%}
+                <a  href="/?location={{location.id}}">
+                    <i>#{{location.name}}</i>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

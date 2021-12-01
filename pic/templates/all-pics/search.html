@@ -1,0 +1,37 @@
+{%extends 'all-pics/base.html'%}
+
+{% block content %}
+{{block.super}}
+<div class="row">
+    {% if images%}
+      <h2>Scanned {{ images|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2> Scanned 0 images for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  <div class="row">
+
+  {% if img %}
+    {% for image in img %}
+      <div class="col-sm-6 col-md-3">
+          <h2>{{image.name}}</h2>
+          <div class="img-details">
+              <span>
+                  <b>Category: </b>
+                  <i>{{image.category}}</i>
+              </span>
+              <span>
+                  <b>Location: </b>
+                  <i>{{image.location}}</i>
+              </span> 
+          </div>
+          <img src="{{image.image.url}}" alt="Diana">
+      </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+
+{% endblock %}
