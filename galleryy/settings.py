@@ -11,9 +11,27 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
+import dj_database_url
+from decouple import config,Csv
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
+MODE=config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+
+DATABASES = {
+    'default': dj_database_url.config(
+       default=config('DATABASE_URL')
+    )
+}
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +41,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&$)vl8b#5atf&$bv6h4jfh^y!g8^-#vdeycav$ayt0wl$=%vcn'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,6 +62,13 @@ INSTALLED_APPS = [
     'bootstrap4',
     'cloudinary'
 ]
+
+
+cloudinary.config( 
+  cloud_name = "dwrxuibpi", 
+  api_key = "226928141486514", 
+  api_secret = "bakCtUGpYbgoF9HFd3rmpUd6EHI" 
+)
 
 MIDDLEWARE = [
     # Simplified static file serving.
@@ -85,9 +110,9 @@ WSGI_APPLICATION = 'galleryy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'images',
-        'USER': 'moringa',
-    'PASSWORD':'Access',
+        'NAME': '',
+        'USER': '',
+    'PASSWORD':'',
     }
 }
 
@@ -136,14 +161,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # configuring the location for media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
 
-cloudinary.config( 
-  cloud_name = "dwrxuibpi", 
-  api_key = "226928141486514", 
-  api_secret = "bakCtUGpYbgoF9HFd3rmpUd6EHI" 
-)
