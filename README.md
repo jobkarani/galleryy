@@ -8,6 +8,7 @@
 Gallery is a simple image gallery web app to showcase scenic pictures. Users get to view photos updated by the site admin. Users can see photos based on the location, by clicking on the listed locations in the menu.  The search function will search photos based on the categories.
 
 ## Live Link
+https://ayubb254.herokuapp.com/
 
 ## Development
 
